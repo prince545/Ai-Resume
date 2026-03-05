@@ -157,17 +157,6 @@ export default function GeneratorPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
-            {/* Header */}
-            <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/60 sticky top-0 z-50 px-8 py-4 flex justify-between items-center">
-                <a href="/" className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-xl leading-none">R</span>
-                    </div>
-                    <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Resume AI</span>
-                </a>
-                <a href="/" className="text-sm text-gray-500 hover:text-gray-800 transition-colors">← Back to Analyzer</a>
-            </header>
-
             <main className="max-w-7xl mx-auto px-4 py-10">
                 {/* Page title */}
                 <div className="text-center mb-10">
