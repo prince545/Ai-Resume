@@ -15,7 +15,17 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+    origin: [
+        'http://localhost:5173', // Local frontend
+        'https://ai-resume-brown.vercel.app', // Production frontend
+        process.env.CORS_ORIGIN // In case the user adds it to .env later
+    ].filter(Boolean),
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id']
+};
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(express.json());
 
