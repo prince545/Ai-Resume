@@ -1,0 +1,4 @@
+Error: Failed to parse file text: bad XRef entry
+    at parseResumeText (file:///C:/New%20folder/New%20folder%20(36)/resume-reviewer/server/utils/parseResume.js:27:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async uploadResume (file:///C:/New%20folder/New%20folder%20(36)/resume-reviewer/server/controllers/resumeController.js:17:31)

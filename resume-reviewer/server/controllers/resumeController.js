@@ -35,7 +35,8 @@ export const uploadResume = async (req, res) => {
 
     } catch (error) {
         console.error('Upload Error:', error);
-        res.status(500).json({ error: 'Failed to upload and parse resume' });
+        import('fs').then(fs => fs.writeFileSync('error_log.txt', error.stack));
+        res.status(500).json({ error: 'Failed to upload and parse resume', details: error.message });
     }
 };
 
@@ -74,6 +75,7 @@ export const analyzeResume = async (req, res) => {
 
     } catch (error) {
         console.error('Analysis Error:', error);
+        import('fs').then(fs => fs.writeFileSync('error_log_analysis.txt', error.stack || error.message || error.toString()));
         res.status(500).json({ error: 'AI analysis failed. Please try again later.' });
     }
 };

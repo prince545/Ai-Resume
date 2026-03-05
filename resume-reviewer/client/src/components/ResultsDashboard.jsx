@@ -8,13 +8,19 @@ export default function ResultsDashboard({ analysis }) {
     if (!analysis) return null;
 
     const {
-        overallScore,
-        grade,
-        scores,
-        missingKeywords,
-        suggestions,
-        summary
-    } = analysis;
+        overallScore = 0,
+        grade = "N/A",
+        scores = {
+            ats: 0,
+            content: 0,
+            alignment: 0,
+            format: 0,
+            language: 0
+        },
+        missingKeywords = [],
+        suggestions = [],
+        summary = { strengths: [], improvements: [] }
+    } = analysis || {};
 
     // Helper to determine color based on score
     const getScoreColor = (score) => {

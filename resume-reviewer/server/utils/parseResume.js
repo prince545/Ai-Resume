@@ -24,6 +24,6 @@ export const parseResumeText = async (fileBuffer, mimeType) => {
         throw new Error('Unsupported file type for parsing');
     } catch (error) {
         console.error('Error parsing file:', error);
-        throw new Error('Failed to parse file text');
+        throw new Error('Failed to parse file text: ' + error.message);
     }
 };

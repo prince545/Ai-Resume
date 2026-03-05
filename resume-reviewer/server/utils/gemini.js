@@ -104,12 +104,22 @@ export const requestResumeAnalysis = async (resumeText, jobDescription = "") => 
     `;
     }
 
-    try {
-        const result = await model.generateContent(prompt);
-        const responseText = result.response.text();
-        return JSON.parse(responseText);
-    } catch (error) {
-        console.error("Gemini API Error:", error);
-        throw new Error("Failed to analyze resume with AI.");
+    let retries = 3;
+    while (retries > 0) {
+        try {
+            const result = await model.generateContent(prompt);
+            const responseText = result.response.text();
+            return JSON.parse(responseText);
+        } catch (error) {
+            console.error(`Gemini API Error (${retries} retries left):`, error);
+            retries--;
+            if (retries === 0) {
+                throw new Error(error.message?.includes('503')
+                    ? "Google AI services are temporarily unavailable. Please try again in a few moments."
+                    : "Failed to analyze resume with AI.");
+            }
+            // Wait for 2 seconds before retrying
+            await new Promise(res => setTimeout(res, 2000));
+        }
     }
 };
